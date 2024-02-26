@@ -10,6 +10,7 @@
   "author": "Alpay",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.1.9",
     "express.js": "^1.0.0"
   },
   "devDependencies": {
