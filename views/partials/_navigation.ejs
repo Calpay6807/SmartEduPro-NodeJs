@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">
-        <img src="images/logo.png" alt="" />
+        <img src="/images/logo.png" alt="" />
       </a>
       <button
         class="navbar-toggler"
@@ -25,25 +25,8 @@
           <li class="nav-item <%= page_name === 'about' ? 'active' : '' %>">
             <a class="nav-link" href="/about">About Us</a>
           </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="dropdown-a"
-              data-toggle="dropdown"
-              >Course
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdown-a">
-              <a class="dropdown-item" href="course-grid-2.html"
-                >Course Grid 2
-              </a>
-              <a class="dropdown-item" href="course-grid-3.html"
-                >Course Grid 3
-              </a>
-              <a class="dropdown-item" href="course-grid-4.html"
-                >Course Grid 4
-              </a>
-            </div>
+          <li class="nav-item <%= page_name === 'courses' ? 'active' : '' %>">
+            <a class="nav-link" href="/courses">Course </a>
           </li>
           <li class="nav-item dropdown">
             <a
