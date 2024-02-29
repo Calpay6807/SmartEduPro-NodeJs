@@ -4,5 +4,7 @@ const routHomePage = (req, res) => {
 const routeAboutPage = (req, res) => {
   res.status(200).render("about", { page_name: "about" });
 };
-
-export { routHomePage, routeAboutPage };
+const routeRegisterPage = (req, res) => {
+  res.status(200).render("register", { page_name: "register" });
+};
+export { routHomePage, routeAboutPage, routeRegisterPage };

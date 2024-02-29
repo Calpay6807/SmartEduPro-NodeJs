@@ -1,3 +1,4 @@
+import { Category } from "../models/Category.js";
 import { Course } from "../models/Course.js";
 
 const createCourse = async (req, res) => {
@@ -17,9 +18,20 @@ const createCourse = async (req, res) => {
 };
 export const getAllCourses = async (req, res) => {
   try {
-    const courses = await Course.find();
+    const categorySlug = req.query.categories;
 
-    res.status(200).render("courses", { courses, page_name: "courses" });
+    const category = await Category.findOne({ slug: categorySlug });
+
+    let filter = {};
+    if (categorySlug) {
+      filter = { category: category._id };
+    }
+    const courses = await Course.find(filter);
+    const categories = await Category.find();
+
+    res
+      .status(200)
+      .render("courses", { courses, page_name: "courses", categories });
   } catch (error) {
     res.status(400).json({
       status: "fail",
