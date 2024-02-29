@@ -7,4 +7,7 @@ const routeAboutPage = (req, res) => {
 const routeRegisterPage = (req, res) => {
   res.status(200).render("register", { page_name: "register" });
 };
-export { routHomePage, routeAboutPage, routeRegisterPage };
+const routeLoginPage = (req, res) => {
+  res.status(200).render("login", { page_name: "login" });
+};
+export { routHomePage, routeAboutPage, routeRegisterPage, routeLoginPage };
