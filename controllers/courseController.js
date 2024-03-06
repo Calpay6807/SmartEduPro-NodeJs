@@ -3,7 +3,12 @@ import { Course } from "../models/Course.js";
 
 const createCourse = async (req, res) => {
   try {
-    const course = await Course.create(req.body);
+    const course = await Course.create({
+      name: req.body.name,
+      description: req.body.description,
+      category: req.body.category,
+      user: req.session.userID,
+    });
 
     res.status(201).redirect("/courses");
   } catch (error) {
@@ -36,11 +41,9 @@ export const getAllCourses = async (req, res) => {
     });
   }
 };
-
 export const getCourses = async (req, res) => {
   try {
     const course = await Course.findOne({ slug: req.params.slug });
-
     res.status(200).render("course", { course, page_name: "courses" });
   } catch (error) {
     res.status(400).json({
@@ -49,4 +52,5 @@ export const getCourses = async (req, res) => {
     });
   }
 };
+
 export default createCourse;

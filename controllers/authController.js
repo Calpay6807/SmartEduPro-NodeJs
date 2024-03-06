@@ -2,6 +2,7 @@ import { User } from "../models/User.js";
 import bcrypt from "bcrypt";
 import { routHomePage } from "./pageController.js";
 import { Category } from "../models/Category.js";
+import { Course } from "../models/Course.js";
 const createUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
@@ -52,8 +53,10 @@ export const logoutUser = (req, res) => {
 export const routeDashboardPage = async (req, res) => {
   const user = await User.findOne({ _id: req.session.userID });
   const categories = await Category.find();
+  const courses = await Course.find({ user: req.session.userID });
+
   res
     .status(200)
-    .render("dashboard", { page_name: "dashboard", user, categories });
+    .render("dashboard", { page_name: "dashboard", user, categories, courses });
 };
 export default createUser;
