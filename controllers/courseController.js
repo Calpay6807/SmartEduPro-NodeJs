@@ -1,5 +1,6 @@
 import { Category } from "../models/Category.js";
 import { Course } from "../models/Course.js";
+import { User } from "../models/User.js";
 
 const createCourse = async (req, res) => {
   try {
@@ -43,14 +44,52 @@ export const getAllCourses = async (req, res) => {
 };
 export const getCourses = async (req, res) => {
   try {
+    const user = await User.findById(req.session.userID);
     const course = await Course.findOne({ slug: req.params.slug });
-    res.status(200).render("course", { course, page_name: "courses" });
+
+    if (!course) {
+      return res
+        .status(404)
+        .json({ status: "fail", message: "Kurs bulunamadı" });
+    }
+
+    res.status(200).render("course", { course, page_name: "courses", user });
   } catch (error) {
+    console.error(error);
     res.status(400).json({
       status: "fail",
       error,
     });
   }
 };
+export const enrollCourse = async (req, res) => {
+  try {
+    const user = await User.findById(req.session.userID);
+    await user.courses.push({ _id: req.body.course_id });
+    await user.save();
 
+    res.status(200).redirect("/users/dashboard");
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({
+      status: "fail",
+      error,
+    });
+  }
+};
+export const relaseCourse = async (req, res) => {
+  try {
+    const user = await User.findById(req.session.userID);
+    await user.courses.pull({ _id: req.body.course_id });
+    await user.save();
+
+    res.status(200).redirect("/users/dashboard");
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({
+      status: "fail",
+      error,
+    });
+  }
+};
 export default createCourse;
