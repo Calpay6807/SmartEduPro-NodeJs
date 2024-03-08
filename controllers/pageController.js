@@ -28,15 +28,7 @@ const sendEmail = async (req, res, next) => {
 
  `;
 
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true, // Use `true` for port 465, `false` for all other ports
-    auth: {
-      user: "alpaycal125@gmail.com",
-      pass: "xohr zppp kvct ujjf",
-    },
-  });
+  // secret areaa
 
   // send mail with defined transport object
   const info = await transporter.sendMail({
