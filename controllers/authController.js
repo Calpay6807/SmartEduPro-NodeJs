@@ -3,16 +3,20 @@ import bcrypt from "bcrypt";
 import { routHomePage } from "./pageController.js";
 import { Category } from "../models/Category.js";
 import { Course } from "../models/Course.js";
+import { validationResult } from "express-validator";
 const createUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
 
     res.status(201).redirect("/login");
   } catch (error) {
-    res.status(400).json({
-      status: "fail",
-      error,
-    });
+    const result = validationResult(req);
+
+    for (let i = 0; i < result.array().length; i++) {
+      req.flash("error", `${result.array()[i].msg}`);
+    }
+
+    res.status(400).redirect("/register");
   }
 };
 
@@ -20,26 +24,27 @@ export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // E-posta ile kullanıcıyı bulun
+    //mongoose 6
     const user = await User.findOne({ email });
-
-    if (!user) {
-      return res.status(404).send("Kullanıcı bulunamadı");
+    if (user) {
+      bcrypt.compare(password, user.password, (err, same) => {
+        if (same) {
+          // USER SESSION
+          req.session.userID = user._id;
+          res.status(200).redirect("/users/dashboard");
+        } else {
+          req.flash("error", "Your password is not correct!");
+          res.status(400).redirect("/login");
+        }
+      });
+    } else {
+      req.flash("error", "User is not exist!");
+      res.status(400).redirect("/login");
     }
-
-    // Şifreleri karşılaştırın
-    const passwordMatch = await bcrypt.compare(password, user.password);
-
-    if (!passwordMatch) {
-      return res.status(401).send("Şifre eşleşmedi");
-    }
-
-    req.session.userID = user._id;
-    res.status(200).redirect("/users/dashboard");
   } catch (error) {
     res.status(400).json({
-      status: "başarısız",
-      hata: error.message,
+      status: "fail",
+      error,
     });
   }
 };
