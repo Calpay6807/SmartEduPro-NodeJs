@@ -10,13 +10,13 @@ const createCourse = async (req, res) => {
       category: req.body.category,
       user: req.session.userID,
     });
+    req.flash("success", `${course.name} has been create successfully`);
 
     res.status(201).redirect("/courses");
   } catch (error) {
-    res.status(400).json({
-      status: "fail",
-      error,
-    });
+    req.flash("error", `${error}`);
+
+    res.status(400).redirect("/courses");
   }
 };
 export const getAllCourses = async (req, res) => {
@@ -80,6 +80,7 @@ export const enrollCourse = async (req, res) => {
     const user = await User.findById(req.session.userID);
     await user.courses.push({ _id: req.body.course_id });
     await user.save();
+    req.flash("success", "Başarlı Şekilde Kayıt oldun");
 
     res.status(200).redirect("/users/dashboard");
   } catch (error) {

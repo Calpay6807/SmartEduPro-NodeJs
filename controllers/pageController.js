@@ -17,7 +17,8 @@ const routeContactPage = (req, res) => {
   res.status(200).render("contact", { page_name: "contact" });
 };
 const sendEmail = async (req, res, next) => {
-  const outputMessage = `
+  try {
+    const outputMessage = `
  <h1>Mail Details</h1>
  <ul>
  <li>Name:${req.body.name}</li>
@@ -28,21 +29,35 @@ const sendEmail = async (req, res, next) => {
 
  `;
 
-  // secret areaa
+    // secret areaa
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true, // Use `true` for port 465, `false` for all other ports
+      auth: {
+        user: "alpaycal125@gmail.com",
+        pass: "xohr zppp kvct ujjf1",
+      },
+    });
 
-  // send mail with defined transport object
-  const info = await transporter.sendMail({
-    from: '"smart edu 👻" <alpaycal125@gmail.com>', // sender address
-    to: "alpayc3@gmail.com ",
-    subject: "new message ✔", // Subject line
-    text: "Hello world?", // plain text body
-    html: outputMessage, // html body
-  });
+    // send mail with defined transport object
+    const info = await transporter.sendMail({
+      from: '"smart edu 👻" <alpaycal125@gmail.com>', // sender address
+      to: "alpayc3@gmail.com ",
+      subject: "new message ✔", // Subject line
+      text: "Hello world?", // plain text body
+      html: outputMessage, // html body
+    });
 
-  console.log("Message sent: %s", info.messageId);
-  // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
+    console.log("Message sent: %s", info.messageId);
+    // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
 
-  res.status(200).redirect("contact");
+    req.flash("success", "We Received Your Message Succesfully");
+    res.status(200).redirect("contact");
+  } catch (err) {
+    req.flash("error", `Something happend ${err}`);
+    res.status(200).redirect("contact");
+  }
 };
 export {
   routHomePage,

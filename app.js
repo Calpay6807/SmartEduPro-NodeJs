@@ -4,6 +4,7 @@ import pageRoute from "./routes/pageRoute.js";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import session from "express-session";
+import flash from "connect-flash";
 import courseRoute from "./routes/courseRout.js";
 import routerCategory from "./routes/categoryRout.js";
 import routerUser from "./routes/userRoute.js";
@@ -35,6 +36,11 @@ app.use(
     }),
   })
 );
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.flashMessages = req.flash();
+  next();
+});
 app.use("*", (req, res, next) => {
   userIn = req.session.userID;
   next();

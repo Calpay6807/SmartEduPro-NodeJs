@@ -12,16 +12,11 @@
 
 <div id="overviews" class="section wb">
   <div class="container">
-    <div class="section-title row text-center">
-      <div class="col-md-8 offset-md-2">
-        <p class="lead">
-          Lorem Ipsum dolroin gravida nibh vel velit auctor aliquet. Aenean
-          sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum,
-          nec sagittis sem!
-        </p>
-      </div>
-    </div>
-    <!-- end title -->
+    <% if (flashMessages) { %> <% if (flashMessages.success) { %>
+    <div class="alert alert-success"><%= flashMessages.success %></div>
+    <% } else if (flashMessages.error) { %>
+    <div class="alert alert-danger"><%= flashMessages.error %></div>
+    <% } %> <% } %>
 
     <hr class="invis" />
 
