@@ -1,5 +1,6 @@
 import express from "express";
 import createCourse, {
+  deleteCourse,
   enrollCourse,
   getAllCourses,
   getCourses,
@@ -16,5 +17,6 @@ router.route("/").get(getAllCourses);
 router.route("/:slug").get(getCourses);
 router.route("/enroll").post(enrollCourse);
 router.route("/release").post(relaseCourse);
+router.route("/:slug").delete(deleteCourse);
 
 export default router;

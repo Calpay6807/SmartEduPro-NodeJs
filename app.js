@@ -3,6 +3,7 @@ import MongoStore from "connect-mongo";
 import pageRoute from "./routes/pageRoute.js";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
+import methodOverride from "method-override";
 import session from "express-session";
 import flash from "connect-flash";
 import courseRoute from "./routes/courseRout.js";
@@ -36,6 +37,7 @@ app.use(
     }),
   })
 );
+
 app.use(flash());
 app.use((req, res, next) => {
   res.locals.flashMessages = req.flash();
@@ -45,6 +47,12 @@ app.use("*", (req, res, next) => {
   userIn = req.session.userID;
   next();
 });
+
+app.use(
+  methodOverride("_method", {
+    methods: ["POST", "GET"],
+  })
+);
 
 // routes:yönlendirme işlemleri
 app.use("/", pageRoute);
