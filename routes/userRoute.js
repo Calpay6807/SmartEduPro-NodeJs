@@ -1,5 +1,6 @@
 import express from "express";
 import createUser, {
+  deleteUser,
   loginUser,
   logoutUser,
   routeDashboardPage,
@@ -31,6 +32,8 @@ router.route("/signup").post(
 router.route("/login").post(loginUser);
 router.route("/logout").get(logoutUser);
 router.route("/dashboard").get(costumMiddleware, routeDashboardPage);
+router.route("/:id").delete(deleteUser);
+
 export default router;
 
 // http://localhost:3000/users/dashboard

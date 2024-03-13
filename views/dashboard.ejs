@@ -376,8 +376,8 @@ if(user) { %> <% if(user.role==='student' ) { %>
               <a
                 href="/users/<%= users[i]._id %>?_method=DELETE"
                 onclick="return confirm('ARE YOU SURE')"
-                class="btn btn-danger rounded-0 text-white"
-                ><span>DELETE</span></a
+                class="btn btn-danger rounded-2 text-white"
+                ><span>Delete</span></a
               >
             </td>
           </tr>
@@ -404,20 +404,20 @@ if(user) { %> <% if(user.role==='student' ) { %>
             <td><%=categories[i].name %></td>
             <td>
               <button
-                class="btn btn-lg btn-warning rounded-0 text-white"
+                class="btn btn-lg btn-warning rounded-3 text-white"
                 href="#"
                 data-toggle="modal"
                 data-target="#addCategory"
               >
-                <span> ADD</span>
+                <span> Add</span>
               </button>
             </td>
             <td>
               <a
                 href="/categories/<%= categories[i]._id %>?_method=DELETE"
                 onclick="return confirm('ARE YOU SURE')"
-                class="btn btn-danger rounded-0 text-white"
-                ><span>DELETE</span></a
+                class="btn btn-danger rounded-3 text-white"
+                ><span>Delete</span></a
               >
             </td>
           </tr>
