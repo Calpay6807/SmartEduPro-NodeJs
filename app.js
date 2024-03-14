@@ -34,7 +34,8 @@ app.use(
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-      mongoUrl: `mongodb+srv://alpayc3:5h9o1kHW8MWp5W96@cluster0.rtgwct6.mongodb.net/`,
+      mongoUrl:
+        "mongodb+srv://alpayc3:5h9o1kHW8MWp5W96@cluster0.rtgwct6.mongodb.net/",
     }),
   })
 );
