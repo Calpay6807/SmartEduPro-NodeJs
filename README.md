@@ -28,7 +28,7 @@ npm start
 
 <div>
 
-<img src='./public/projectimg/1.png/>
+<img src='./public/projectimg/1.png'/>
 
 <img src='./public/projectimg/2.png'/>
 
