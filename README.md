@@ -26,6 +26,4 @@ npm start
 > Tüm kullanıcıların kontrol altında tutulduğu `Admin Dashboard` oluşturuldu
 > Kullanıcı `mail` gönderme işlemi sağlandı `Nodemailer` ile
 
-<img src='../SmartEduPro-NodeJs/public/images/about_02.jpg'/>
-
-<img src='../SmartEduPro-NodeJs/public/images/about_02.jpg'/>
+<img src="./public/images/about_02.jpg"/>
