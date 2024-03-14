@@ -14,8 +14,16 @@ const app = express();
 
 //connect db
 mongoose
-  .connect("mongodb://localhost:27017/smartedu-db")
-  .then(() => console.log("Connected!"));
+  .connect(
+    "mongodb+srv://alpayc3:j47mly85AWNJY4ch@cluster0.bu0yoaf.mongodb.net/",
+    { autoIndex: false }
+  )
+  .then(() => {
+    console.log("db Connected");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 // template enginee
 app.set("view engine", "ejs");
 
