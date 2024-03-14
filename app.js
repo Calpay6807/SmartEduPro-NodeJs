@@ -15,7 +15,7 @@ const app = express();
 //connect db
 mongoose
   .connect(
-    "mongodb+srv://alpayc3:5h9o1kHW8MWp5W96ch@cluster0.bu0yoaf.mongodb.net/",
+    "mongodb+srv://alpayc3:5h9o1kHW8MWp5W96@cluster0.rtgwct6.mongodb.net/",
     { autoIndex: false }
   )
   .then(() => {
