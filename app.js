@@ -9,6 +9,7 @@ import flash from "connect-flash";
 import courseRoute from "./routes/courseRout.js";
 import routerCategory from "./routes/categoryRout.js";
 import routerUser from "./routes/userRoute.js";
+import "dotenv/config";
 const app = express();
 
 //connect db
@@ -33,7 +34,8 @@ app.use(
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-      mongoUrl: "mongodb://localhost:27017/smartedu-db",
+      mongoUrl: `mongodb+srv://
+        ${process.env.PRİVATE_USER}:${process.env.PRİVATE_PASSWORD}@cluster0.rtgwct6.mongodb.net/smartedu-db`,
     }),
   })
 );
@@ -59,7 +61,7 @@ app.use("/", pageRoute);
 app.use("/courses", courseRoute);
 app.use("/categories", routerCategory);
 app.use("/users", routerUser);
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`example app listening ın port ${port}`);
 });

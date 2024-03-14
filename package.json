@@ -5,7 +5,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "author": "Alpay",
   "license": "ISC",
@@ -13,6 +13,7 @@
     "bcrypt": "^5.1.1",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^5.1.0",
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "express-session": "^1.18.0",
     "express-validator": "^7.0.1",
