@@ -26,4 +26,10 @@ npm start
 > Tüm kullanıcıların kontrol altında tutulduğu `Admin Dashboard` oluşturuldu
 > Kullanıcı `mail` gönderme işlemi sağlandı `Nodemailer` ile
 
-<img src="./public/images/about_02.jpg"/>
+<div class="display:flex, width:200px,height:250px">
+
+<img src='./public/images/about_02.jpg'/>
+
+<img src='./public/images/about_02.jpg'/>
+
+</div>
