@@ -34,8 +34,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-      mongoUrl: `mongodb+srv://
-        ${process.env.PRİVATE_USER}:${process.env.PRİVATE_PASSWORD}@cluster0.rtgwct6.mongodb.net/smartedu-db`,
+      mongoUrl: `mongodb+srv://alpayc3:5h9o1kHW8MWp5W96@cluster0.rtgwct6.mongodb.net/`,
     }),
   })
 );
